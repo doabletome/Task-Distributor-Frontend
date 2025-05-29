@@ -56,7 +56,7 @@ VITE_API_BASE = https://task-distributor-backend.onrender.com/api
 
 1. **Admin Login**
 
-   * Email: `admin@example.com`
+   * Email: `admin@examplegmail.com`
    * Password: `adminpass`
 
 2. **Agents Management**
