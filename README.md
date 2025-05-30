@@ -1,12 +1,83 @@
-# React + Vite
+## project stucture
+Root director/
+    ├── index.html
+    ├── package.json
+    ├── tailwind.config.cjs
+    ├── postcss.config.cjs
+    └── src/
+        ├── main.jsx
+        ├── index.css
+        ├── App.jsx
+        ├── services/api.js
+        ├── routes/PrivateRoute.jsx
+        ├── components/
+        └── pages/
+##  Prerequisites
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+* Node.js v14+ & npm
+* MongoDB URI (local or Atlas)
+* (Optional) `git` to clone the repo
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Environment Variables
 
-## Expanding the ESLint configuration
+Copy `.env.example` to `.env` in the `client/` folder and fill in:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+VITE_API_BASE = https://task-distributor-backend.onrender.com/api
+```
+
+## Frontend Setup (Vite + React + Tailwind)
+
+1. **Install dependencies**
+
+   
+   cd client
+   npm install
+   
+
+2. **Start Vite dev server**
+
+   
+   npm run dev
+   
+
+   * Frontend served at `http://localhost:5173`
+
+3. **Build for production**
+
+   
+   npm run build
+   
+
+---
+##  Workflow
+
+1. **Admin Login**
+
+   * Email: `admin@examplegmail.com`
+   * Password: `adminpass`
+
+2. **Agents Management**
+
+   * Create new agents via the “Add Agent” form.
+   * View all agents in a responsive grid.
+
+3. **CSV Upload & Distribute**
+
+   * Prepare a CSV with columns `FirstName,Phone,Notes`.
+   * Upload under “Upload CSV” and the system evenly assigns rows to agents.
+
+4. **Agent View**
+
+   * Agents log in with their seeded credentials (e.g. `agent1@example.com` / `agentpass`).
+   * They see only their assigned tasks under “My Tasks.”
+
+---
+
+##  Usage Notes
+
+* All protected routes require a valid JWT stored in `localStorage`.
+* Frontend automatically attaches the token via Axios interceptor.
+* Any network or validation errors surface inline as banners or field errors.
