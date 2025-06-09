@@ -106,7 +106,7 @@ import api from "../services/api";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
-export default function AgentForm({ onAdded }) {
+export default function AgentForm({ onAdded, role }) {
   // State variables to manage form data, errors, messages, and loading status
   const [f, setF] = useState({ name: "", email: "", phone: "", password: "" });
   const [errors, setErrors] = useState({});
@@ -139,7 +139,12 @@ export default function AgentForm({ onAdded }) {
     setLoading(true);
     try {
       // Send form data to backend to create a new agent
-      await api.post("/agents", f);
+      if (role === "admin") {
+        await api.post("/agents", f);
+      } else if (role === "agent") {
+        await api.post("/subagents", f);
+      }
+
       setMsg("Agent added ✅");
       setF({ name: "", email: "", phone: "", password: "" }); // Clear form
       onAdded(); // Callback to refresh list

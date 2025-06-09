@@ -41,11 +41,6 @@ export default function CsvUpload() {
     setError("");
     setMsg("");
 
-    // Prevent agents from uploading files
-    if (role !== "admin") {
-      return setError("Only admins can upload and distribute tasks.");
-    }
-
     // Validate selected file
     const ve = validateFile(file);
     if (ve) return setError(ve);

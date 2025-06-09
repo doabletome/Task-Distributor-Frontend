@@ -4,7 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import AgentsPage from "./pages/AgentsPage";
 import UploadPage from "./pages/UploadPage";
 import TasksPage from "./pages/TasksPage";
-
+import SubagentsPage from "./pages/SubagentsPage";
 // Main application router
 export default function App() {
   return (
@@ -41,6 +41,8 @@ export default function App() {
           </PrivateRoute>
         }
       />
+
+      <Route path="/subagentTasks" element={<SubagentsPage />} />
 
       {/* Catch-all route: redirect unknown paths to login */}
       <Route path="*" element={<Navigate to="/login" replace />} />

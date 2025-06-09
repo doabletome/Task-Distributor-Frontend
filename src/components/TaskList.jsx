@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
-
+import { Link } from "react-router-dom";
 export default function TaskList() {
   // State variables to hold fetched data, loading status, and any error
   const [data, setData] = useState(null);
@@ -19,6 +19,7 @@ export default function TaskList() {
 
         // Make API call to get tasks assigned to the agent (or all if admin)
         const res = await api.get(`/tasks/agent/${id}`);
+        console.log(res);
 
         // Save both role and payload (tasks or agent-task mapping)
         setData({ role, payload: res.data });
@@ -39,7 +40,7 @@ export default function TaskList() {
   if (error) return <p className="text-center text-red-600">{error}</p>;
 
   // Destructure role and payload from state
-  const { role, payload } = data;
+  const { role, payload, userId } = data;
 
   // ----------- Agent View ------------
   // If logged-in user is an agent, render a flat list of tasks
@@ -61,6 +62,9 @@ export default function TaskList() {
             <p className="text-gray-600 mt-1">{t.notes}</p>
           </div>
         ))}
+        <Link to="/subagentTasks" className="font-bold text-sm text-red-300">
+          SubAgents
+        </Link>
       </div>
     );
   }
